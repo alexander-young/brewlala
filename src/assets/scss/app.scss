@@ -164,16 +164,7 @@
   overflow-y: auto;
 }
 
-.marker {
-  background-image: url('../images/beer.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-
 /* Marker tweaks */
-
 .mapboxgl-popup-close-button {
   display: none;
 }
