@@ -77,15 +77,18 @@ window.onload = () => {
 
       console.log({position});
 
+      const lat = position.coords.latitude.toString();
+      const lng = position.coords.longitude.toString();
+
       let data = new FormData();
       data.append('action', 'search_breweries');
-      data.append('lat', position.coords.latitude);
-      data.append('lng', position.coords.longitude);
-
+      data.append('lat', lat);
+      data.append('lng', lng);
+      
       toggle_loading_beer();
       axios.post(`https://wpbrew.local/wp-admin/admin-ajax.php`, data).then(response => {
         toggle_loading_beer();
-        displayResults( response );
+        displayResults(response, [lng, lat]);
       });
 
     }); 
@@ -107,7 +110,8 @@ document.addEventListener('click', function (e) {
     data.append('lat', e.target.dataset.lat);
     data.append('lng', e.target.dataset.lng);
 
-    search_input.value = e.target.dataset.city;
+    let city_state = e.target.querySelector('span');
+    search_input.value = city_state.innerText;
 
     clearResults();
     toggle_loading_beer();
@@ -120,7 +124,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-const displayResults = (response) => {
+const displayResults = (response, user_location = []) => {
 
   clearResults();
 
@@ -168,6 +172,14 @@ const displayResults = (response) => {
   locations.features.forEach((feature) => {
     bounds.extend(feature.geometry.coordinates);
   });
+
+  if( user_location.length !== 0 ){
+    bounds.extend(user_location);
+    new mapboxgl.Marker()
+      .setLngLat(user_location)
+      .addTo(map);
+  }
+
   map.fitBounds(bounds, {
     'padding': 75
   });
