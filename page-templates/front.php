@@ -11,7 +11,7 @@ get_header();
 				<input 
 				class="input-group-field" 
 				id="search-text" 
-				placeholder="Start Typing..." 
+				placeholder="Start Typing A City..." 
 				type="text"
 				autocomplete="off"
 				value="<?= ( ! empty( $_GET['brew_search'] ) ) ? $_GET['brew_search'] : ""; ?>" />
