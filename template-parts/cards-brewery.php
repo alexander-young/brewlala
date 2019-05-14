@@ -12,6 +12,11 @@ if( ! empty($breweries) ) {
         <h6><?= ucwords( $location->brewery_type ); ?></h6>
         <h5><?= $location->name; ?></h5>
         <p><?= number_format($location->distance, 2); ?> mi - <?= $location->city; ?></p>
+        <?php
+          if( $lat && $lng ){
+            echo '<a class="button" target="_blank" href="https://www.google.com/maps/dir/'.$lat.','.$lng.'/'.$location->latitude.', '.$location->longitude.'">Get Directions</a>';
+          }
+        ?>
       </div>
     </div>
 
