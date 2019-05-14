@@ -85,12 +85,26 @@
 
 
 
-.search {
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+  max-width: $global-width;
+  margin: 0 auto;
   padding: rem-calc(40);
-  .input-group {
+
+  .search-box{
+    flex: 0 1 100%;
     margin-bottom: 0;
     position: relative;
+    max-width: rem-calc(500);
+    #search-text{
+      margin-bottom: 0;
+    }
   }
+
+
   #autocomplete-results {
     position: absolute;
     top: 100%;
@@ -104,12 +118,18 @@
     .autocomplete-city{
       display: flex;
       width: 100%;
+      background-color: $body-background;
+      color: $white;
       padding: rem-calc(10) rem-calc(20);
       align-items: center;
       cursor: pointer;
       transition: background-color .3s ease-in;
+      border-bottom: 1px solid lighten($body-background, 15%);
+      &:last-child{
+        border-bottom: 0;
+      }
       &:hover {
-        background-color: lighten($white, 15%);
+        background-color: lighten($body-background, 15%);
       }
       i {
         margin-right: rem-calc(5);
@@ -136,6 +156,9 @@
 .brewery-card {
   min-height: rem-calc(165);
   margin-bottom: 2px;
+  transition: background-color 0.3s ease-in;
+  cursor: pointer;
+
   &:last-child{
     margin-bottom: 0;
   }
@@ -148,7 +171,8 @@
     margin-bottom: 0;
   }
 
-  &.active{
+  &.active,
+  &:hover{
     background-color: lighten($card-background, 10%);
   }
 
@@ -157,7 +181,8 @@
 
 #map,
 #brewery-container{
-  height: 80vh;
+  min-height: 80vh;
+  max-height: 80vh;
   overflow: hidden;
 }
 #brewery-container {
@@ -165,50 +190,37 @@
 }
 
 /* Marker tweaks */
-.mapboxgl-popup-close-button {
-  display: none;
-}
+#map {
+  .mapboxgl-popup-close-button {
+    display: none;
+  }
 
-.mapboxgl-popup-content {
-  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-  padding: 0;
-  width: 180px;
-}
+  .mapboxgl-popup-content {
+    background-color: $body-background;
+    color: $white;
+    padding: 0;
+    width: rem-calc(180);
+    padding: rem-calc(20);
+    font-size: rem-calc(16)
+  }
 
-.mapboxgl-popup-content-wrapper {
-  padding: 1%;
-}
+  .mapboxgl-popup-content-wrapper {
+    padding: 1%;
+  }
 
-.mapboxgl-popup-content h3 {
-  background: #91c949;
-  color: #fff;
-  margin: 0;
-  display: block;
-  padding: 10px;
-  border-radius: 3px 3px 0 0;
-  font-weight: 700;
-  margin-top: -15px;
-}
+  .mapboxgl-popup-content div {
+    padding: 10px;
+  }
 
-.mapboxgl-popup-content h4 {
-  margin: 0;
-  display: block;
-  padding: 10px;
-  font-weight: 400;
-}
+  .mapboxgl-container .leaflet-marker-icon {
+    cursor: pointer;
+  }
 
-.mapboxgl-popup-content div {
-  padding: 10px;
-}
+  .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+    margin-top: 15px;
+  }
 
-.mapboxgl-container .leaflet-marker-icon {
-  cursor: pointer;
-}
-
-.mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
-  margin-top: 15px;
-}
-
-.mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
-  border-bottom-color: #91c949;
+  .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+    border-bottom-color: #91c949;
+  }
 }
