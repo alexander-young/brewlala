@@ -4,22 +4,18 @@ Template Name: Front
 */
 get_header();
 ?>
-<div class="grid-container search">
-	<div class="grid-x grid-margin-x align-center">
-		<div class="cell medium-6">
-			<div class="input-group">
-				<input 
-				class="input-group-field" 
-				id="search-text" 
-				placeholder="Start Typing A City..." 
-				type="text"
-				autocomplete="off"
-				value="<?= ( ! empty( $_GET['brew_search'] ) ) ? $_GET['brew_search'] : ""; ?>" />
-				<div id="autocomplete-results"></div>
-			</div>
-		</div>
+<header>
+	<div class="search-box">
+		<input
+		id="search-text" 
+		placeholder="Start Typing A City..." 
+		type="text"
+		autocomplete="off"
+		value="<?= ( ! empty( $_GET['brew_search'] ) ) ? $_GET['brew_search'] : ""; ?>" />
+		<div id="autocomplete-results"></div>
 	</div>
-</div>
+</header>
+
 <div class="content">
 	<div class="grid-x grid-margin-x medium-margin-collapse">
 		<div class="cell medium-9">
