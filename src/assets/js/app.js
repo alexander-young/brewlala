@@ -12,7 +12,7 @@ import {
 } from './utilities';
 
 
-const ajax_url = "https://wpbrew.local/wp-admin/admin-ajax.php";
+const ajax_url = "https://brewla.la/wp-admin/admin-ajax.php";
 const search_input = document.getElementById('search-text');
 
 window.onload = () => {
