@@ -127,14 +127,10 @@ function search_breweries(){
 }
 
 function register_brewery_cpt() {
-  register_post_type( 'brewery', array( // rename it to api-brewery
+  register_post_type( 'brewery', array(
     'label' => 'Breweries',
     'public' => true,
-    'capability_type' => 'post', // manage options
-    // 'capabilities' => array(
-    //   'create_posts' => false,
-    // ),
-    // 'map_meta_cap' => false,
+    'capability_type' => 'post',
   ));
 }
 add_action( 'init', 'register_brewery_cpt' );
@@ -162,27 +158,18 @@ add_action( 'wp_ajax_nopriv_get_breweries_from_api', 'get_breweries_from_api' );
 add_action( 'wp_ajax_get_breweries_from_api', 'get_breweries_from_api' );
 function get_breweries_from_api() {
 
-  $file = get_stylesheet_directory() . "/errors.txt";
   $current_page = ( ! empty( $_POST['current_page'] ) ) ? $_POST['current_page'] : 1;
-  file_put_contents($file, "the next page is: " . $current_page . "\n", FILE_APPEND);
   $breweries = [];
 
   // Should return an array of objects
   $results = wp_remote_retrieve_body( wp_remote_get('https://api.openbrewerydb.org/breweries/?page=' . $current_page . '&per_page=50') );
-  file_put_contents($file, "Results for page" . $current_page . ": " . $results . "\n\n", FILE_APPEND);
 
   // turn it into a PHP array from JSON string
   $results = json_decode( $results );   
   
   // Either the API is down or something else spooky happened. Just be done.
-  if( ! is_array($results) ){
-    file_put_contents( $file, "non-array results on page: " . $current_page . "\n\n", FILE_APPEND);
+  if( ! is_array( $results ) || empty( $results ) ){
     return false;
-  }
-
-  if( empty( $results ) ) {
-    file_put_contents( $file, "empty results on page: " . $current_page . "\n\n", FILE_APPEND);
-    return false; 
   }
 
   $breweries[] = $results;
