@@ -5,6 +5,7 @@ Template Name: Front
 get_header();
 ?>
 <header>
+	<h1>BrewLaLa</h1>
 	<div class="search-box">
 		<input
 		id="search-text" 
