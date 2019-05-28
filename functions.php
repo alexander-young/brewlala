@@ -150,9 +150,9 @@ function clear_breweries_from_db() {
 
 
 
-// if ( ! wp_next_scheduled( 'update_brewery_list' ) ) {
-//   wp_schedule_event( time(), 'weekly', 'update_brewery_list' );
-// }
+if ( ! wp_next_scheduled( 'update_brewery_list' ) ) {
+  wp_schedule_event( time(), 'weekly', 'update_brewery_list' );
+}
 add_action( 'update_brewery_list', 'get_breweries_from_api' );
 add_action( 'wp_ajax_nopriv_get_breweries_from_api', 'get_breweries_from_api' );
 add_action( 'wp_ajax_get_breweries_from_api', 'get_breweries_from_api' );
@@ -197,18 +197,18 @@ function get_breweries_from_api() {
 
       // add meta fields
       $fillable = [
-        'field_5cbcd9b769ec4' => 'name',
-        'field_5cbcd9cbead4e' => 'brewery_type',
-        'field_5cbcd9d720328' => 'street',
-        'field_5cbcd9dc20329' => 'city',
-        'field_5cbcd9e02032a' => 'state',
-        'field_5cbcd9e62032b' => 'postal_code',
-        'field_5cbcd9f22032c' => 'country',
-        'field_5cbcda0ab4375' => 'longitude',
-        'field_5cbcda11b4376' => 'latitude',
-        'field_5cbcda18b4377' => 'phone',
-        'field_5cbcda2f35476' => 'website',
-        'field_5cbcda3535477' => 'updated_at',
+        'field_5cedaf14c3d19' => 'name',
+        'field_5cedaf1ac3d1a' => 'brewery_type',
+        'field_5cedaf22c3d1b' => 'street',
+        'field_5cedaf28c3d1c' => 'city',
+        'field_5cedaf2dc3d1d' => 'state',
+        'field_5cedaf32c3d1e' => 'postal_code',
+        'field_5cedaf37c3d1f' => 'country',
+        'field_5cedaf3fc3d20' => 'longitude',
+        'field_5cedaf46c3d21' => 'latitude',
+        'field_5cedaf4dc3d22' => 'phone',
+        'field_5cedaf52c3d23' => 'website',
+        'field_5cedaf57c3d24' => 'updated_at',
       ];
 
       foreach( $fillable as $key => $name ) {
@@ -224,18 +224,18 @@ function get_breweries_from_api() {
       if( $brewery->updated_at >= $exisiting_brewerey_timestamp ){
 
         $fillable = [
-          'field_5cbcd9b769ec4' => 'name',
-          'field_5cbcd9cbead4e' => 'brewery_type',
-          'field_5cbcd9d720328' => 'street',
-          'field_5cbcd9dc20329' => 'city',
-          'field_5cbcd9e02032a' => 'state',
-          'field_5cbcd9e62032b' => 'postal_code',
-          'field_5cbcd9f22032c' => 'country',
-          'field_5cbcda0ab4375' => 'longitude',
-          'field_5cbcda11b4376' => 'latitude',
-          'field_5cbcda18b4377' => 'phone',
-          'field_5cbcda2f35476' => 'website',
-          'field_5cbcda3535477' => 'updated_at',
+          'field_5cedaf14c3d19' => 'name',
+          'field_5cedaf1ac3d1a' => 'brewery_type',
+          'field_5cedaf22c3d1b' => 'street',
+          'field_5cedaf28c3d1c' => 'city',
+          'field_5cedaf2dc3d1d' => 'state',
+          'field_5cedaf32c3d1e' => 'postal_code',
+          'field_5cedaf37c3d1f' => 'country',
+          'field_5cedaf3fc3d20' => 'longitude',
+          'field_5cedaf46c3d21' => 'latitude',
+          'field_5cedaf4dc3d22' => 'phone',
+          'field_5cedaf52c3d23' => 'website',
+          'field_5cedaf57c3d24' => 'updated_at',
         ];
 
         foreach( $fillable as $key => $name ){
