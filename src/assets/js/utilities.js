@@ -1,5 +1,9 @@
+import axios from 'axios';
 import mapboxgl from 'mapbox-gl';
 import map from './brew-map';
+
+const ajax_url = "https://wpbrew.local/wp-admin/admin-ajax.php";
+const search_input = document.getElementById('search-text');
 
 export const toggle_loading_beer = () => {
 
