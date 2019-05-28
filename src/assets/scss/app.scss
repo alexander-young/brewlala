@@ -87,15 +87,19 @@
 
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   min-height: 20vh;
   max-width: $global-width;
   margin: 0 auto;
   padding: rem-calc(40);
 
+  h1 {
+    flex: 0 1 50%;
+  }
+
   .search-box{
-    flex: 0 1 100%;
+    flex: 0 1 50%;
     margin-bottom: 0;
     position: relative;
     max-width: rem-calc(500);
